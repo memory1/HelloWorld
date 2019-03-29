@@ -11,7 +11,7 @@ namespace HelloWorld
         private static void Main(string[] args)
         {
             Console.WriteLine(CreateMessage());
-            Console.WriteLine("doned");
+            Console.WriteLine("done");
         }
 
         public static string CreateMessage()
