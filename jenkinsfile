@@ -1,26 +1,13 @@
 stage 'CI'
 node {
-
-	checkout scm
-	node {
+checkout scm
     stage('checkout') {
         git 'https://github.com/memory1/HelloWorld.git'
      }
     stage('msbuild') {
         bat label: '', script: 'msbuild HelloWorld.sln'
     }
-     stage('archive') {
+    stage('archive') {
                     archiveArtifacts 'HelloWorld\\bin\\Debug\\*.*'
-             
          }
-	 
-}
-
-def notify(status){
-    emailext (
-      to: "xshen@vmware.com",
-      subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-      body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-        <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
-    )
 }
