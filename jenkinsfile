@@ -1,6 +1,6 @@
 stage 'CI'
 node('master') {
-//checkout scm
+   checkout scm
     stage('checkout') {
         git 'https://github.com/memory1/HelloWorld.git'
      }
