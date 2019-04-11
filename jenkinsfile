@@ -1,6 +1,5 @@
-stage 'CI'
+stage('CI')
 node('master') {
-   checkout scm
     stage('checkout') {
         git 'https://github.com/memory1/HelloWorld.git'
      }
@@ -8,7 +7,7 @@ node('master') {
         bat label: '', script: 'msbuild HelloWorld.sln'
     
    stage('mstest') {
-        bat label: '', script: 'mstest /testcontainer:HelloWorldTests\\bin\\Debug\\HelloWorldTests.dll'
+        bat label: '', script: 'mstest /testcontainer:".\\HelloWorldTests\\bin\\Debug\\HelloWorldTests.dll"'
     }
     stage('archive') {
                     archiveArtifacts 'HelloWorld\\bin\\Debug\\*.*'
