@@ -6,6 +6,9 @@ node('master') {
      }
     stage('msbuild') {
         bat label: '', script: 'msbuild HelloWorld.sln'
+    
+   stage('mstest') {
+        bat label: '', script: 'mstest /testcontainer:HelloWorldTests\bin\Debug\HelloWorldTests.dll'
     }
     stage('archive') {
                     archiveArtifacts 'HelloWorld\\bin\\Debug\\*.*'
